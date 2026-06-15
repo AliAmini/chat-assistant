@@ -1,0 +1,66 @@
+# Dependencies
+node_modules/
+node_modules/**
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+coverage/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# Prisma
+packages/prisma/*.db
+packages/prisma/migrations/*.db
+
+# Testing
+jest.config.js
+test-report.xml
+.nyc_output/
+
+# Docker
+!docker-compose.yml
+!.dockerignore
+
+# Misc
+*.tgz
+*.gz
+*.log
+*.pid
+*.seed
+*.pid.lock

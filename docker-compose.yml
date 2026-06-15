@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: chatdb
+    ports:
+      - "5432:5432"
+
+  # backend:
+  #   build: ./apps/backend
+  #   ports:
+  #     - "4000:4000"
+  #   environment:
+  #     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/chatdb?schema=public"
+  #     AI_SERVICE_URL: "http://ai-service:4001"
+  #   depends_on:
+  #     - postgres
+  #     - ai-service
+  # ai-service:
+  #   build: ./apps/ai-service
+  #   ports:
+  #     - "4001:4001"

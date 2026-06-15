@@ -1,0 +1,25 @@
+{
+  "name": "@aichat/types",
+  "version": "1.0.0",
+  "description": "Shared TypeScript types for AiChat application",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prebuild": "pnpm clean",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "types",
+    "shared",
+    "aichat"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {},
+  "dependencies": {}
+}

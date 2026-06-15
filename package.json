@@ -1,0 +1,9 @@
+{
+  "name": "chat-assignment",
+  "private": true,
+  "scripts": {
+    "dev:backend": "pnpm --filter backend start:dev",
+    "dev:ai": "pnpm --filter ai-service start:dev",
+    "dev:frontend": "pnpm --filter frontend dev"
+  }
+}
