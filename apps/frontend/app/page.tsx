@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -9,6 +9,7 @@ interface Conversation {
   title: string | null;
   createdAt: string;
   updatedAt: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   messages?: any[];
 }
 
@@ -17,11 +18,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  useEffect(() => {
-    fetchConversations();
-  }, []);
-
-  const fetchConversations = async () => {
+  const fetchConversations = useCallback(async () => {
     try {
       const response = await fetch('http://localhost:4000/api/conversations');
       const data = await response.json();
@@ -31,7 +28,12 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchConversations();
+  }, [fetchConversations]);
 
   const createNewConversation = async () => {
     try {

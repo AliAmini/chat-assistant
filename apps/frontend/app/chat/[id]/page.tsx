@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -24,22 +24,14 @@ export default function ChatPage() {
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [conversations, setConversations] = useState<any[]>([]);
-
-  useEffect(() => {
-    fetchConversation();
-    fetchConversations();
-  }, [params.id]);
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [conversation?.messages]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const fetchConversations = async () => {
+  const fetchConversations = useCallback(async () => {
     try {
       const response = await fetch('http://localhost:4000/api/conversations');
       const data = await response.json();
@@ -47,9 +39,9 @@ export default function ChatPage() {
     } catch (error) {
       console.error('Failed to fetch conversations:', error);
     }
-  };
+  }, []);
 
-  const fetchConversation = async () => {
+  const fetchConversation = useCallback(async () => {
     try {
       const response = await fetch(`http://localhost:4000/api/conversations/${params.id}`);
       const data = await response.json();
@@ -57,7 +49,17 @@ export default function ChatPage() {
     } catch (error) {
       console.error('Failed to fetch conversation:', error);
     }
-  };
+  }, [params.id]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchConversation();
+    fetchConversations();
+  }, [fetchConversation, fetchConversations]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [conversation?.messages]);
 
   const createNewConversation = async () => {
     try {
@@ -91,13 +93,13 @@ export default function ChatPage() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ content: messageContent }),
-        }
+        },
       );
 
       const data = await response.json();
-      
+
       // Update conversation with new messages
-      setConversation(prev => {
+      setConversation((prev) => {
         if (!prev) return prev;
         return {
           ...prev,
@@ -161,9 +163,7 @@ export default function ChatPage() {
       <div className="flex-1 flex flex-col bg-gray-50">
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-6 py-4">
-          <h1 className="text-xl font-semibold text-gray-800">
-            {conversation.title || 'Chat'}
-          </h1>
+          <h1 className="text-xl font-semibold text-gray-800">{conversation.title || 'Chat'}</h1>
         </div>
 
         {/* Messages */}
@@ -177,15 +177,9 @@ export default function ChatPage() {
               conversation.messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex ${
-                    message.role === 'USER' ? 'justify-end' : 'justify-start'
-                  }`}
+                  className={`flex ${message.role === 'USER' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div
-                    className={`chat-message-${
-                      message.role === 'USER' ? 'user' : 'assistant'
-                    }`}
-                  >
+                  <div className={`chat-message-${message.role === 'USER' ? 'user' : 'assistant'}`}>
                     <p className="whitespace-pre-wrap">{message.content}</p>
                   </div>
                 </div>
