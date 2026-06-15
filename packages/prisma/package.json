@@ -6,17 +6,13 @@
   "scripts": {
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
-    "studio": "prisma studio",
-    "build": "tsc",
-    "clean": "rm -rf dist",
-    "prebuild": "pnpm generate",
-    "dev": "tsc --watch"
+    "studio": "prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "^7.8.0"
+    "@prisma/client": "^5.22.0"
   },
   "devDependencies": {
-    "prisma": "^7.8.0",
-    "typescript": "^5.7.3"
+    "prisma": "^5.22.0",
+    "typescript": "^5.3.3"
   }
 }

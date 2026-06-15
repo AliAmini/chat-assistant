@@ -5,19 +5,18 @@
     "moduleResolution": "node10",
     "lib": ["ES2021"],
     "types": ["node"],
-    "ignoreDeprecations": "6.0",
-    
+    // "ignoreDeprecations": "6.0",
+
     // Output settings
     "outDir": "./dist",
-    "rootDir": "../..",  // ← Set to the common source directory
     "removeComments": true,
-    
+
     // Monorepo path mapping
     "paths": {
-      "@aichat/prisma": ["../../packages/prisma/src"],
-      "@aichat/types": ["../../packages/types/src"]
+      "@aichat/prisma": ["../../packages/prisma/dist/index.d.ts"],
+      "@aichat/types": ["../../packages/types"]
     },
-    
+
     // Type safety & decorators
     "strict": true,
     "noImplicitAny": true,
@@ -28,14 +27,9 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "sourceMap": true,
-    "incremental": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "src/**/*.ts",
-    "../../packages/prisma/src/**/*.ts",
-    "../../packages/types/src/**/*.ts"
-  ],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist", "**/*.spec.ts"]
 }
