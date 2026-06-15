@@ -7,9 +7,15 @@ export class ConversationsService {
   constructor(private prisma: PrismaService) {}
 
   async create(dto?: CreateConversationDto) {
+    let conversationTitle = dto?.title;
+    if (!conversationTitle) {
+      const numberOfConversations = await this.prisma.conversation.count();
+      conversationTitle = `New Conversation ${numberOfConversations + 1}`;
+    }
+
     return this.prisma.conversation.create({
       data: {
-        title: dto?.title || 'New Conversation',
+        title: conversationTitle,
       },
       select: {
         id: true,
