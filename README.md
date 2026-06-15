@@ -22,8 +22,8 @@ A full-stack chat application with separate frontend, backend, and AI services.
 
 ```bash
 # Clone repository
-git clone <your-repository-url>
-cd chat-assignment
+git clone https://github.com/AliAmini/chat-assistant
+cd chat-assistant
 
 # Install dependencies
 pnpm install
