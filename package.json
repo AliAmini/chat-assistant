@@ -4,6 +4,8 @@
   "scripts": {
     "dev:backend": "pnpm --filter backend start:dev",
     "dev:ai": "pnpm --filter ai-service start:dev",
-    "dev:frontend": "pnpm --filter frontend dev"
+    "dev:frontend": "pnpm --filter frontend dev",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
   }
 }

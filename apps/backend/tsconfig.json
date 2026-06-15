@@ -1,25 +1,41 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "resolvePackageJsonExports": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "declaration": true,
+    "target": "ES2021",
+    "module": "commonjs",
+    "moduleResolution": "node10",
+    "lib": ["ES2021"],
+    "types": ["node"],
+    "ignoreDeprecations": "6.0",
+    
+    // Output settings
+    "outDir": "./dist",
+    "rootDir": "../..",  // ← Set to the common source directory
     "removeComments": true,
+    
+    // Monorepo path mapping
+    "paths": {
+      "@aichat/prisma": ["../../packages/prisma/src"],
+      "@aichat/types": ["../../packages/types/src"]
+    },
+    
+    // Type safety & decorators
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ES2023",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "declaration": true,
+    "sourceMap": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "../../packages/prisma/src/**/*.ts",
+    "../../packages/types/src/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts"]
 }
