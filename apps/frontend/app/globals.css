@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
-@layer base {
+/* @layer base {
   body {
     @apply bg-gray-50;
   }
-}
+} */
 
-@layer components {
+/* @layer components {
   .chat-message-user {
     @apply bg-blue-500 text-white rounded-lg p-3 max-w-[70%] self-end;
   }
@@ -14,4 +14,4 @@
   .chat-message-assistant {
     @apply bg-gray-200 text-gray-800 rounded-lg p-3 max-w-[70%] self-start;
   }
-}
+} */
